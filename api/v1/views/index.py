@@ -6,10 +6,14 @@ from api.v1.views import app_views
 from flask import jsonify
 
 
-@app_view.route('/status', strict_slashes=False)
+@app_views.route('/status', strict_slashes=False)
 def status():
     """Module returns a JSON status"""
-    return jsonify({"status": "OK"})
+    data_x = {
+        "status": "OK"
+    }
+    return jsonify(data_x)
+    resp.status_code = 200
 
 
 @app_views.route('/stats', strict_slashes=False)

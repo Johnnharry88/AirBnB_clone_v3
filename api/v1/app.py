@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """Module holds the major application"""
 from models import storage
-from api.vI.views import app_views
+from api.v1.views import app_views
 from flask import Flask, make_response, jsonify
 from os import getenv
 from flask_cors import CORS
-from flasgger import Swagger
+from flask_swagger import swagger
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -13,13 +13,13 @@ app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
 
 
-@app.teardown_appcontent
-def close_db(obj):
+@app.teardown_appcontext
+def teardown(obj):
     """calls the mehtod close() on storage"""
     storage.close()
 
 
-@app.erorhandle(404)
+@app.errorhandler(404)
 def page_not_found(error):
     """Looks for customised page not found"""
     return make_response(jsonify({"error": "Not found"}), 404)
@@ -31,7 +31,7 @@ app.config['SWAGGER'] = {
     Below are all the documentation',
     'universion': 3}
 
-Swagger(app)
+swagger(app)
 
 if __name__ == "__main__":
 
