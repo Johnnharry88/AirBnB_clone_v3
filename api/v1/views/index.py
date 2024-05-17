@@ -10,8 +10,8 @@ from flask import jsonify
 def status():
     """Module returns a JSON status"""
     data_x = {
-        "status": "OK"
-    }
+            "status": "OK"
+            }
     return jsonify(data_x)
     resp.status_code = 200
 
