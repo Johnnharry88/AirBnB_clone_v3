@@ -6,7 +6,8 @@ from models import storage
 import os
 import json
 import pep8
-alx = file_storage.FIleStorage
+alx = file_storage.FileStorage
+
 
 class TestFileStorageDocs(unittest.TestCase):
     """Tests to check the documentation and style of FileStorage class"""
