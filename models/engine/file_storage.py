@@ -73,7 +73,7 @@ class FileStorage:
     def count(self, cls=None):
         """
         Returns the number of objects in storage matching the given class name.
-   	"""
+        """
         if cls:
             counter = 0
             for obj in self.__objects.values():
@@ -84,9 +84,9 @@ class FileStorage:
 
     def get(self, cls, id):
         """ retrieves """
-        if cls in classes.values() and id and type(id) == str:
+        if cls in self.__objects.values() and id and type(id) == str:
             d_obj = self.all(cls)
             for key, value in d_obj.items():
                 if key.split(".")[1] == id:
                     return value
-        return None 
+        return None

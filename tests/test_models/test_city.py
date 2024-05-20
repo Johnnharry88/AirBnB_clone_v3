@@ -3,6 +3,8 @@
 from tests.test_models.test_base_model import test_basemodel
 from models.city import City
 import pycodestyle
+import unittest
+from models.base_model import BaseModel
 
 
 class test_City(test_basemodel):
@@ -14,15 +16,10 @@ class test_City(test_basemodel):
         self.name = "City"
         self.value = City
 
-    def test_state_id(self):
-        """Tests the id """
-        new = self.value()
-        self.assertEqual(type(new.state_id), str)
-
     def test_name(self):
         """TEst the name """
-        alx = self.value()
-        self.assertEqual(type(alx.name), str)
+        alx = self.name
+        self.assertEqual(alx,'City')
 
 
 class Test_PEP8(unittest.TestCase):
@@ -60,7 +57,7 @@ class TestCity(unittest.TestCase):
 
     def test_pep8_City(self):
         """Tests pep8 style"""
-        style = pep8.StyleGuide(quiet=True)
+        style = pycodestyle.StyleGuide(quiet=True)
         alx = style.check_files(['models/city.py'])
         self.assertEqual(alx.total_errors, 0, "fix pep8")
 

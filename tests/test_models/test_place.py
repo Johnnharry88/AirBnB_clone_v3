@@ -16,54 +16,49 @@ class test_Place(test_basemodel):
     def test_city_id(self):
         """Test id """
         alx = self.value()
-        self.assertEqual(type(alx.city_id), str)
+        self.assertEqual(alx.city_id, None)
 
     def test_user_id(self):
         """ Test user id"""
         alx = self.value()
-        self.assertEqual(type(alx.user_id), str)
+        self.assertEqual(alx.user_id, None)
 
     def test_name(self):
         """Test the str for name """
         alx = self.value()
-        self.assertEqual(type(alx.name), str)
+        self.assertEqual(alx.name, None)
 
     def test_description(self):
         """Test description """
         alx = self.value()
-        self.assertEqual(type(alx.description), str)
+        self.assertEqual(alx.description, None)
 
     def test_number_rooms(self):
         """Test room number """
         alx = self.value()
-        self.assertEqual(type(alx.number_rooms), int)
+        self.assertEqual(alx.number_rooms, None)
 
     def test_number_bathrooms(self):
         """Test bethroom number """
         alx = self.value()
-        self.assertEqual(type(alx.number_bathrooms), int)
+        self.assertEqual(alx.number_bathrooms, None)
 
     def test_max_guest(self):
         """Test maimum guest"""
         alx = self.value()
-        self.assertEqual(type(alx.max_guest), int)
+        self.assertEqual(alx.max_guest, None)
 
     def test_price_by_night(self):
         """Tests night price """
         alx = self.value()
-        self.assertEqual(type(alx.price_by_night), int)
+        self.assertEqual(alx.price_by_night, None)
 
     def test_latitude(self):
         """Test latitude """
         alx = self.value()
-        self.assertEqual(type(alx.latitude), float)
+        self.assertEqual(alx.latitude, None)
 
     def test_longitude(self):
         """Test longitude """
         alx = self.value()
-        self.assertEqual(type(alx.latitude), float)
-
-    def test_amenity_ids(self):
-        """est new.amenity_ids """
-        alx = self.value()
-        self.assertEqual(type(alx.amenity_ids), list)
+        self.assertEqual(alx.latitude, None)

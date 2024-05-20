@@ -1,34 +1,98 @@
 #!/usr/bin/python3
-"""Module that Defines the Class User """
-from tests.test_models.test_base_model import test_basemodel
-from models.user import User
+"""
+Unit Test for User Class
+"""
+import unittest
+from datetime import datetime
+import models
+import json
+import os
+
+User = models.user.User
+BaseModel = models.base_model.BaseModel
+storage_type = os.environ.get('HBNB_TYPE_STORAGE')
 
 
-class test_User(test_basemodel):
-    """Defines Test Case for USer """
+class TestUserDocs(unittest.TestCase):
+    """Class for testing User Class docs"""
 
-    def __init__(self, *args, **kwargs):
-        """Test args and kwargs"""
-        super().__init__(*args, **kwargs)
-        self.name = "User"
-        self.value = User
+    @classmethod
+    def setUpClass(cls):
+        print('\n\n.................................')
+        print('..... Testing Documentation .....')
+        print('........   User  Class   ........')
+        print('.................................\n\n')
 
-    def test_first_name(self):
-        """Test User first name """
-        new = self.value()
-        self.assertEqual(type(new.first_name), str)
+    def test_doc_file(self):
+        """... documentation for the file"""
+        expected = 'This is the user class'
+        actual = models.user.__doc__
+        self.assertEqual(expected, actual)
 
-    def test_last_name(self):
-        """Tests the users last name """
-        new = self.value()
-        self.assertEqual(type(new.last_name), str)
+    def test_doc_class(self):
+        """... documentation for the class"""
+        expected = 'This is the User attr'
+        actual = User.__doc__
+        self.assertEqual(expected, actual)
 
-    def test_email(self):
-        """TEst the users email """
-        new = self.value()
-        self.assertEqual(type(new.email), str)
 
-    def test_password(self):
-        """Test the useers password """
-        new = self.value()
-        self.assertEqual(type(new.password), str)
+class TestUserInstances(unittest.TestCase):
+    """testing for class instances"""
+
+    @classmethod
+    def setUpClass(cls):
+        print('\n\n.................................')
+        print('....... Testing Functions .......')
+        print('.........  User  Class  .........')
+        print('.................................\n\n')
+
+    def setUp(self):
+        """initializes new user for testing"""
+        self.user = User()
+
+    def test_instantiation(self):
+        """... checks if User is properly instantiated"""
+        self.assertIsInstance(self.user, User)
+
+
+    @unittest.skipIf(storage_type == 'db', 'skip if environ is db')
+    def test_updated_at(self):
+        """... save function should add updated_at attribute"""
+        self.user.save()
+        actual = type(self.user.updated_at)
+        expected = type(datetime.now())
+        self.assertEqual(expected, actual)
+
+    @unittest.skipIf(storage_type == 'db', 'skip if environ is db')
+    def test_to_json(self):
+        """... to_json should return serializable dict object"""
+        self.user_json = self.user.to_dict()
+        actual = 1
+        try:
+            serialized = json.dumps(self.user_json)
+        except:
+            actual = 0
+        self.assertTrue(1 == actual)
+
+    @unittest.skipIf(storage_type == 'db', 'skip if environ is db')
+    def test_json_class(self):
+        """... to_json should include class key with value User"""
+        self.user_json = self.user.to_dict()
+        actual = None
+        if self.user_json['__class__']:
+            actual = self.user_json['__class__']
+        expected = 'User'
+        self.assertEqual(expected, actual)
+
+    def test_email_attribute(self):
+        """... add email attribute"""
+        self.user.email = "bettyholbertn@gmail.com"
+        if hasattr(self.user, 'email'):
+            actual = self.user.email
+        else:
+            actual = ''
+        expected = "bettyholbertn@gmail.com"
+        self.assertEqual(expected, actual)
+
+if __name__ == '__main__':
+    unittest.main

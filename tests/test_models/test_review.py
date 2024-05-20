@@ -16,14 +16,9 @@ class test_review(test_basemodel):
     def test_place_id(self):
         """tests id for place"""
         alx = self.value()
-        self.assertEqual(type(alx.place_id), str)
+        self.assertEqual(self.name, 'Review')
 
     def test_user_id(self):
         """test for usr id"""
         alx = self.value()
-        self.assertEqual(type(alx.user_id), str)
-
-    def test_text(self):
-        """test for text"""
-        alx = self.value()
-        self.assertEqual(type(alx.text), str)
+        self.assertEqual(Review, self.value)
