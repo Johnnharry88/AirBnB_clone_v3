@@ -19,7 +19,7 @@ class test_City(test_basemodel):
     def test_name(self):
         """TEst the name """
         alx = self.name
-        self.assertEqual(alx,'City')
+        self.assertEqual(alx, 'City')
 
 
 class Test_PEP8(unittest.TestCase):
